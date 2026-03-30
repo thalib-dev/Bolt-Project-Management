@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6",
+		"name": "OpenClaw Project Management System",
+		"description": "API collection for the OpenClaw PM System including advanced features like activity logging and task dependencies.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\",\n    \"name\": \"Test User\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": "{{base_url}}/auth/signup"
+					}
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": "{{base_url}}/auth/login"
+					}
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Get All Projects",
+					"request": { "method": "GET", "url": "{{base_url}}/projects" }
+				},
+				{
+					"name": "Create Project",
+					"request": {
+						"method": "POST",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Enterprise Project\",\n    \"description\": \"Developing a new internal tool\",\n    \"budget\": 50000,\n    \"visibility\": \"PRIVATE\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": "{{base_url}}/projects"
+					}
+				}
+			]
+		},
+		{
+			"name": "Tasks & Productivity",
+			"item": [
+				{
+					"name": "Create Task",
+					"request": {
+						"method": "POST",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Implement Authentication\",\n    \"status\": \"TODO\",\n    \"priority\": \"HIGH\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": "{{base_url}}/projects/:projectId/tasks"
+					}
+				},
+				{
+					"name": "Log Time",
+					"request": {
+						"method": "POST",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startTime\": \"2023-10-01T10:00:00Z\",\n    \"endTime\": \"2023-10-01T12:00:00Z\",\n    \"duration\": 7200\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": "{{base_url}}/tasks/:taskId/time-entries"
+					}
+				}
+			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "Get Workload",
+					"request": { "method": "GET", "url": "{{base_url}}/reports/workload" }
+				}
+			]
+		}
+	],
+	"variable": [
+		{ "key": "base_url", "value": "http://localhost:5000/api" }
+	]
+}
